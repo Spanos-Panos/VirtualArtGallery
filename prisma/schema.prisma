@@ -1,0 +1,84 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String
+  avatar    String?
+  bio       String?
+  role      UserRole @default(USER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relationships
+  artworks  Artwork[]
+  galleries Gallery[]
+}
+
+model Artwork {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  imageUrl    String
+  price       Float?
+  dimensions  String?  // "1920x1080" for 3D placement
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relationships
+  artistId    String
+  artist      User     @relation(fields: [artistId], references: [id], onDelete: Cascade)
+  categoryId  String
+  category    Category @relation(fields: [categoryId], references: [id])
+  galleries   GalleryArtwork[]
+}
+
+model Category {
+  id          String    @id @default(cuid())
+  name        String    @unique
+  description String?
+  createdAt   DateTime  @default(now())
+
+  // Relationships
+  artworks    Artwork[]
+}
+
+model Gallery {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  isPublic    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relationships
+  ownerId     String
+  owner       User     @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  artworks    GalleryArtwork[]
+}
+
+model GalleryArtwork {
+  id        String @id @default(cuid())
+  galleryId String
+  artworkId String
+
+  // Relationships
+  gallery   Gallery @relation(fields: [galleryId], references: [id], onDelete: Cascade)
+  artwork   Artwork @relation(fields: [artworkId], references: [id], onDelete: Cascade)
+
+  @@unique([galleryId, artworkId])
+}
+
+enum UserRole {
+  USER
+  ARTIST
+  ADMIN
+}

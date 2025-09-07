@@ -42,15 +42,15 @@ Deployment: Vercel
 - [X] Set up Git repository
 
 ### **1.2 Database Fundamentals & Setup**
-- [ ] **Database Theory**: SQL vs NoSQL, when to use each
-- [ ] **PostgreSQL Setup**: Local development database
-- [ ] **Prisma ORM**: Understanding ORMs vs raw SQL
-- [ ] **Database Design**: Tables, relationships, indexes
-- [ ] **Environment Variables**: Secure configuration
+- [X] **Database Theory**: SQL vs NoSQL, when to use each
+- [X] **PostgreSQL Setup**: Local development database
+- [X] **Prisma ORM**: Understanding ORMs vs raw SQL
+- [X] **Database Design**: Tables, relationships, indexes
+- [X] **Environment Variables**: Secure configuration
 
 ### **1.3 Basic Project Structure**
-- [ ] Create database schema for artists, artworks, galleries
-- [ ] Set up Prisma client and database connection
+- [X] Create database schema for artists, artworks, galleries
+- [X] Set up Prisma client and database connection
 - [ ] Create basic Next.js pages and routing
 - [ ] Implement responsive layout with Tailwind CSS
 
@@ -60,7 +60,7 @@ Deployment: Vercel
 
 ### **2.1 Authentication Fundamentals**
 - [ ] **NextAuth.js Setup**: Understanding OAuth and JWT
-- [ **User Registration & Login**: Email/password and social logins
+- [ ]**User Registration & Login**: Email/password and social logins
 - [ ] **Session Management**: Secure user sessions
 - [ ] **Role-Based Access**: Artists vs Visitors vs Admins
 - [ ] **Password Security**: Hashing, validation, reset
